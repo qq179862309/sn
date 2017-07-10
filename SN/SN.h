@@ -27,5 +27,6 @@
 #include "core/define.h"
 #include "core/Main.h"
 #include "module/MemoryModule.h"
+#include "hook\Hook.h"
 
 using namespace SN;
