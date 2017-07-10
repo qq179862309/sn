@@ -12,6 +12,12 @@ CHook::~CHook()
 {
 }
 
+CHook*	CHook::getInstance()
+{
+	static	CHook	hookGlobal;
+	return &hookGlobal;
+}
+
 int	CHook::hookWindowAPI(tstring strModule, char* funcName, DWORD dwFunction)
 {
 	int nRet = 0;
@@ -43,5 +49,44 @@ int	CHook::hookWindowAPI(tstring strModule, char* funcName, DWORD dwFunction)
 		retIntError(nRet);
 	}
 	memcpy((LPVOID)pFunction, (const void*)bCode, sizeof(bCode));
+	return 0;
+}
+
+int	CHook::hookFunction(tstring strKey, DWORD dwFuncAddress, byte* lpNewCode, int nNewLength)
+{
+	int nRet = 0;
+	DWORD dwProtect = 0;
+	if (!VirtualProtect((LPVOID)dwFuncAddress, nNewLength, PAGE_EXECUTE_READWRITE, &dwProtect))
+	{
+		nRet = 1;
+		retIntError(nRet);
+	}
+	PHOOKINFO pHookInfo = new HOOKINFO;
+	pHookInfo->dwFuncAddress = dwFuncAddress;
+	pHookInfo->pNewCode = new byte[nNewLength];
+	memcpy(pHookInfo->pNewCode, lpNewCode, nNewLength);
+	pHookInfo->pOldCode = new byte[nNewLength];
+
+	memcpy(pHookInfo->pOldCode, (const void*)dwFuncAddress, nNewLength);
+	memcpy((void*)dwFuncAddress, pHookInfo->pNewCode, nNewLength);
+
+	m_MapInfo.insert(MAP_HOOKINFO::value_type(strKey, pHookInfo));
+
+	return 0;
+}
+
+int		CHook::unHookFunction(tstring strKey)
+{
+	ITER_HOOKINFO iter = m_MapInfo.find(strKey);
+	if (iter != m_MapInfo.end())
+	{
+		PHOOKINFO pHookInfo = iter->second;
+		memcpy((void*)pHookInfo->dwFuncAddress, pHookInfo->pOldCode, pHookInfo->nNewLength);
+		delete []pHookInfo->pNewCode;
+		delete []pHookInfo->pOldCode;
+		delete pHookInfo;
+
+		m_MapInfo.erase(iter);
+	}
 	return 0;
 }
