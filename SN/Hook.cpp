@@ -5,6 +5,7 @@
 
 CHook::CHook()
 {
+	m_MapInfo.clear();
 }
 
 
