@@ -19,6 +19,9 @@
     <Filter Include="module">
       <UniqueIdentifier>{74048c66-92ca-4f6f-8a76-3cd8f32c04c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="hook">
+      <UniqueIdentifier>{2ffe20d2-cf00-4dd8-aee7-a1227b92ce3c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -42,6 +45,9 @@
     <ClInclude Include="module\MemoryModule.h">
       <Filter>module</Filter>
     </ClInclude>
+    <ClInclude Include="hook\Hook.h">
+      <Filter>hook</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -54,6 +60,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="MemoryModule.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Hook.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
