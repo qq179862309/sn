@@ -38,13 +38,21 @@ int	CHook::hookWindowAPI(tstring strModule, char* funcName, DWORD dwFunction)
 		nRet = 2;
 		retIntError(nRet);
 	}
+	int nLength = 0;
+#ifdef _WIN64
+	DWORD dwCode = (DWORD)pFunction - dwFunction - 9;
+	byte bCode[9] = { 0x90 };
+	nLength = 9;
+#else
 	DWORD dwCode = (DWORD)pFunction - dwFunction - 5;
 	byte bCode[5] = { 0x90 };
+	nLength = 5;
+#endif
 	bCode[0] = 0xE9;
 	memcpy(&bCode[1], (LPVOID)dwCode, sizeof(DWORD));
 
 	DWORD dwProtect = 0;
-	if (!VirtualProtect((LPVOID)pFunction, 5, PAGE_EXECUTE_READWRITE, &dwProtect))
+	if (!VirtualProtect((LPVOID)pFunction, nLength, PAGE_EXECUTE_READWRITE, &dwProtect))
 	{
 		nRet = 3;
 		retIntError(nRet);
