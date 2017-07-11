@@ -15,6 +15,9 @@ namespace SN
 	typedef std::map<tstring, PHOOKINFO>	MAP_HOOKINFO;
 	typedef MAP_HOOKINFO::iterator			ITER_HOOKINFO;
 
+	typedef std::map<HWND, DWORD>			MAP_HWNDPROC;
+	typedef MAP_HWNDPROC::iterator			ITER_HWNDPROC;
+
 	class SNAPI CHook
 	{
 	public:
@@ -26,8 +29,11 @@ namespace SN
 	public:
 		int				hookFunction(tstring strKey, DWORD dwFuncAddress, byte* lpNewCode, int nNewLength);
 		int				unHookFunction(tstring strKey);
+		int				hookWindowProc(HWND hWnd, DWORD dwProc);
+		int				unHookWindowProc(HWND hWnd);
 	protected:
 		MAP_HOOKINFO	m_MapInfo;
+		MAP_HWNDPROC	m_MapHwndProc;
 	};
 }
 

@@ -6,6 +6,7 @@
 CHook::CHook()
 {
 	m_MapInfo.clear();
+	m_MapHwndProc.clear();
 }
 
 
@@ -96,6 +97,33 @@ int		CHook::unHookFunction(tstring strKey)
 		delete pHookInfo;
 
 		m_MapInfo.erase(iter);
+	}
+	return 0;
+}
+
+int		CHook::hookWindowProc(HWND hWnd, DWORD dwProc)
+{
+	int nRet = 0;
+	LONG lWndProc = GetWindowLong(hWnd, GWL_WNDPROC);
+	if (lWndProc == NULL)
+	{
+		nRet = 1;
+		retIntError(nRet);
+	}
+	SetWindowLong(hWnd, GWL_WNDPROC, (LONG)dwProc);
+
+	m_MapHwndProc.insert(MAP_HWNDPROC::value_type(hWnd, lWndProc));
+
+	return 0;
+}
+
+int		CHook::unHookWindowProc(HWND hWnd)
+{
+	ITER_HWNDPROC iter = m_MapHwndProc.find(hWnd);
+	if (iter != m_MapHwndProc.end())
+	{
+		SetWindowLong(hWnd, GWL_WNDPROC, (LONG)iter->second);
+		m_MapHwndProc.erase(iter);
 	}
 	return 0;
 }
