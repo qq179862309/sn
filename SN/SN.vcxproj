@@ -59,7 +59,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <OutputFile>$(OutDir)..\\Bin\\$(TargetName)_D$(TargetExt)</OutputFile>
+      <OutputFile>$(OutDir)..\\Bin\\$(TargetName)_Dx86$(TargetExt)</OutputFile>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

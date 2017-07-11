@@ -6,15 +6,22 @@
 #define		SN_DEBUG_VERTION	
 #endif // DEBUG
 
+#ifdef _WIN64
+#define SN_LIB_VERTION		"x64"
+#else
+#define SN_LIB_VERTION		"x86"
+#endif // _WIN64
+
+
 #ifdef SN_STATIC
 #define SNAPI
+#pragma comment(lib,"SN" SN_DEBUG_VERTION SN_LIB_VERTION ".lib")
 #else
 #ifdef SN_EXPORTS
 #define SNAPI _declspec(dllexport)
 #else
 #define SNAPI _declspec(dllimport)
-#pragma comment(lib,"SN" SN_DEBUG_VERTION ".lib")
-#pragma message("SN" SN_DEBUG_VERTION ".lib")
+#pragma comment(lib,"SN" SN_DEBUG_VERTION SN_LIB_VERTION ".lib")
 #endif
 #endif
 
