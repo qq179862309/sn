@@ -23,10 +23,13 @@
 #include <atlstr.h>
 #include <atltime.h>
 
+#include <dbghelp.h>
+#include <WinSock2.h>
+
 
 #include "core/define.h"
 #include "core/Main.h"
 #include "module/MemoryModule.h"
-#include "hook\Hook.h"
+#include "hook/Hook.h"
 
 using namespace SN;

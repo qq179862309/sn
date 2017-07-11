@@ -22,6 +22,9 @@
     <Filter Include="hook">
       <UniqueIdentifier>{2ffe20d2-cf00-4dd8-aee7-a1227b92ce3c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="socket">
+      <UniqueIdentifier>{2c574114-028e-4550-b824-203274f7388a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -48,6 +51,9 @@
     <ClInclude Include="hook\Hook.h">
       <Filter>hook</Filter>
     </ClInclude>
+    <ClInclude Include="socket\EventSocket.h">
+      <Filter>socket</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -63,6 +69,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Hook.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="EventSocket.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

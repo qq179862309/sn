@@ -41,6 +41,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);c:\program files (x86)\wtl9.0\include;$(SolutionDir);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -58,7 +59,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <OutputFile>$(OutDir)..\\Lib\\$(TargetName)_D$(TargetExt)</OutputFile>
+      <OutputFile>$(OutDir)..\\Bin\\$(TargetName)_D$(TargetExt)</OutputFile>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -87,10 +88,12 @@
     <ClInclude Include="hook\Hook.h" />
     <ClInclude Include="module\MemoryModule.h" />
     <ClInclude Include="SN.h" />
+    <ClInclude Include="socket\EventSocket.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="EventSocket.cpp" />
     <ClCompile Include="Hook.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MemoryModule.cpp" />

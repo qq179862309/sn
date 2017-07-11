@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "core\Main.h"
-#include  <dbghelp.h> 
+
+
 #pragma comment(lib,  "dbghelp.lib")
-#include <WinSock2.h>
 #pragma comment(lib,"Ws2_32.lib")
 
 namespace SN
