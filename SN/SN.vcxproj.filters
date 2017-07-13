@@ -25,6 +25,9 @@
     <Filter Include="socket">
       <UniqueIdentifier>{2c574114-028e-4550-b824-203274f7388a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="log">
+      <UniqueIdentifier>{270c6f9f-6fe4-4bc9-af9c-c1082e2618f0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -54,6 +57,9 @@
     <ClInclude Include="socket\EventSocket.h">
       <Filter>socket</Filter>
     </ClInclude>
+    <ClInclude Include="log\Log.h">
+      <Filter>log</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -72,6 +78,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="EventSocket.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Log.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
