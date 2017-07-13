@@ -38,5 +38,6 @@
 #include "core/Main.h"
 #include "module/MemoryModule.h"
 #include "hook/Hook.h"
+#include "log/Log.h"
 
 using namespace SN;
