@@ -29,8 +29,9 @@ namespace SN
 	public:
 		int				hookFunction(tstring strKey, DWORD dwFuncAddress, byte* lpNewCode, int nNewLength);
 		int				unHookFunction(tstring strKey);
-		int				hookWindowProc(HWND hWnd, DWORD dwProc);
+		int				hookWindowProc(HWND hWnd, DWORD dwNewProc, DWORD& dwOldProc);
 		int				unHookWindowProc(HWND hWnd);
+		int				windowProcCall(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, int& nResult);
 	protected:
 		MAP_HOOKINFO	m_MapInfo;
 		MAP_HWNDPROC	m_MapHwndProc;

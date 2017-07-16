@@ -3,6 +3,7 @@
 #include "SN.h"
 
 
+
 CHook::CHook()
 {
 	m_MapInfo.clear();
@@ -41,16 +42,16 @@ int	CHook::hookWindowAPI(tstring strModule, char* funcName, DWORD dwFunction)
 	}
 	int nLength = 0;
 #ifdef _WIN64
-	DWORD dwCode = (DWORD)pFunction - dwFunction - 9;
+	DWORD dwCode = (DWORD)dwFunction - (DWORD)pFunction - 9;
 	byte bCode[9] = { 0x90 };
 	nLength = 9;
 #else
-	DWORD dwCode = (DWORD)pFunction - dwFunction - 5;
+	DWORD dwCode = (DWORD)dwFunction - (DWORD)pFunction - 5;
 	byte bCode[5] = { 0x90 };
 	nLength = 5;
 #endif
 	bCode[0] = 0xE9;
-	memcpy(&bCode[1], (LPVOID)dwCode, sizeof(DWORD));
+	memcpy(&bCode[1], (LPVOID)&dwCode, sizeof(DWORD));
 
 	DWORD dwProtect = 0;
 	if (!VirtualProtect((LPVOID)pFunction, nLength, PAGE_EXECUTE_READWRITE, &dwProtect))
@@ -101,7 +102,7 @@ int		CHook::unHookFunction(tstring strKey)
 	return 0;
 }
 
-int		CHook::hookWindowProc(HWND hWnd, DWORD dwProc)
+int		CHook::hookWindowProc(HWND hWnd, DWORD dwNewProc, DWORD& dwOldProc)
 {
 	int nRet = 0;
 	LONG lWndProc = GetWindowLong(hWnd, GWL_WNDPROC);
@@ -110,8 +111,8 @@ int		CHook::hookWindowProc(HWND hWnd, DWORD dwProc)
 		nRet = 1;
 		retIntError(nRet);
 	}
-	SetWindowLong(hWnd, GWL_WNDPROC, (LONG)dwProc);
-
+	dwOldProc = lWndProc;
+	SetWindowLong(hWnd, GWL_WNDPROC, (LONG)dwNewProc);
 	m_MapHwndProc.insert(MAP_HWNDPROC::value_type(hWnd, lWndProc));
 
 	return 0;
@@ -126,4 +127,16 @@ int		CHook::unHookWindowProc(HWND hWnd)
 		m_MapHwndProc.erase(iter);
 	}
 	return 0;
+}
+
+int		CHook::windowProcCall(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, int& nResult)
+{
+	int nRet = -1;
+	ITER_HWNDPROC iter = m_MapHwndProc.find(hWnd);
+	if (iter != m_MapHwndProc.end())
+	{
+		nResult = CallWindowProc((WNDPROC)iter->second, hWnd, uMsg, wParam, lParam);
+		nRet = 0;
+	}
+	return nRet;
 }

@@ -86,6 +86,7 @@
     <ClInclude Include="core\define.h" />
     <ClInclude Include="core\Main.h" />
     <ClInclude Include="hook\Hook.h" />
+    <ClInclude Include="log\Log.h" />
     <ClInclude Include="module\MemoryModule.h" />
     <ClInclude Include="SN.h" />
     <ClInclude Include="socket\EventSocket.h" />
@@ -95,6 +96,7 @@
   <ItemGroup>
     <ClCompile Include="EventSocket.cpp" />
     <ClCompile Include="Hook.cpp" />
+    <ClCompile Include="Log.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MemoryModule.cpp" />
     <ClCompile Include="SN.cpp" />
