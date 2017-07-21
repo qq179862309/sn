@@ -60,6 +60,18 @@ namespace SN
 	};
 
 	template<class T>
+	inline T CReaderIni::get(const std::string & section, const std::string & key, const T& default_value) const
+	{
+		auto sec = this->getSection(section);
+
+		if (sec != nullptr && this->findSection(section))
+
+			if (sec->find(key) != sec->end())
+				return parseValue<T>(sec->at(key), default_value);
+		return default_value;
+	}
+
+	template<class T>
 	inline T CReaderIni::parseValue(const std::string& value, const T& default_value) const
 	{
 		T ret;
