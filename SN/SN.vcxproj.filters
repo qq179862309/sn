@@ -60,6 +60,12 @@
     <ClInclude Include="log\Log.h">
       <Filter>log</Filter>
     </ClInclude>
+    <ClInclude Include="core\Ini.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\Character.h">
+      <Filter>core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -81,6 +87,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Log.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Ini.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

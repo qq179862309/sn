@@ -39,5 +39,7 @@
 #include "module/MemoryModule.h"
 #include "hook/Hook.h"
 #include "log/Log.h"
+#include "core\Ini.h"
+#include "core\Character.h"
 
 using namespace SN;

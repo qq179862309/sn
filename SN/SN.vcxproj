@@ -83,7 +83,9 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="core\Character.h" />
     <ClInclude Include="core\define.h" />
+    <ClInclude Include="core\Ini.h" />
     <ClInclude Include="core\Main.h" />
     <ClInclude Include="hook\Hook.h" />
     <ClInclude Include="log\Log.h" />
@@ -94,8 +96,10 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Character.cpp" />
     <ClCompile Include="EventSocket.cpp" />
     <ClCompile Include="Hook.cpp" />
+    <ClCompile Include="Ini.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MemoryModule.cpp" />
