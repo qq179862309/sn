@@ -1,8 +1,13 @@
 #include "stdafx.h"
 #include "socket/EventSocket.h"
 
-#pragma comment(lib, "Lib/libeay32.lib")
-#pragma comment(lib, "Lib/ssleay32.lib")  
+#ifdef _WIN64
+#	pragma comment(lib, "x64\\libeay32.lib")
+#	pragma comment(lib, "x64\\ssleay32.lib")
+#else
+#	pragma comment(lib, "x86\\libeay32.lib")
+#	pragma comment(lib, "x86\\ssleay32.lib")
+#endif 
 
 const int MAX_SOCKET_COUNT_PER_THREAD = WSA_MAXIMUM_WAIT_EVENTS - 1; // 定义每个线程最大管理的
 const int CUSTOM_SOCKET_COUNT_PER_THREAD = 1;

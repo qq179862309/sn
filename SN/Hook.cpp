@@ -105,14 +105,14 @@ int		CHook::unHookFunction(tstring strKey)
 int		CHook::hookWindowProc(HWND hWnd, DWORD dwNewProc, DWORD& dwOldProc)
 {
 	int nRet = 0;
-	LONG lWndProc = GetWindowLong(hWnd, GWL_WNDPROC);
+	LONG lWndProc = GetWindowLong(hWnd, GWLP_WNDPROC);
 	if (lWndProc == NULL)
 	{
 		nRet = 1;
 		retIntError(nRet);
 	}
 	dwOldProc = lWndProc;
-	SetWindowLong(hWnd, GWL_WNDPROC, (LONG)dwNewProc);
+	SetWindowLong(hWnd, GWLP_WNDPROC, (LONG)dwNewProc);
 	m_MapHwndProc.insert(MAP_HWNDPROC::value_type(hWnd, lWndProc));
 
 	return 0;
@@ -123,7 +123,7 @@ int		CHook::unHookWindowProc(HWND hWnd)
 	ITER_HWNDPROC iter = m_MapHwndProc.find(hWnd);
 	if (iter != m_MapHwndProc.end())
 	{
-		SetWindowLong(hWnd, GWL_WNDPROC, (LONG)iter->second);
+		SetWindowLong(hWnd, GWLP_WNDPROC, (LONG)iter->second);
 		m_MapHwndProc.erase(iter);
 	}
 	return 0;

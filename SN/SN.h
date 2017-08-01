@@ -7,9 +7,9 @@
 #endif // DEBUG
 
 #ifdef _WIN64
-#define SN_LIB_VERTION		"x64"
+#define SN_LIB_VERTION		"_x64"
 #else
-#define SN_LIB_VERTION		"x86"
+#define SN_LIB_VERTION		"_x86"
 #endif // _WIN64
 
 
