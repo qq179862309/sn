@@ -15,13 +15,13 @@
 
 #ifdef SN_STATIC
 #define SNAPI
-#pragma comment(lib,"SN" SN_DEBUG_VERTION SN_LIB_VERTION ".lib")
+#pragma comment(lib,"SN" SN_LIB_VERTION SN_DEBUG_VERTION ".lib")
 #else
 #ifdef SN_EXPORTS
 #define SNAPI _declspec(dllexport)
 #else
 #define SNAPI _declspec(dllimport)
-#pragma comment(lib,"SN" SN_DEBUG_VERTION SN_LIB_VERTION ".lib")
+#pragma comment(lib,"SN" SN_LIB_VERTION SN_DEBUG_VERTION ".lib")
 #endif
 #endif
 
