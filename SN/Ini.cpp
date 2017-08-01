@@ -1,11 +1,7 @@
 #include "stdafx.h"
 #include "core/Ini.h"
 
-#include <fstream>
 #include <regex>
-#include <sstream>
-#include <iostream>
-
 
 CIni::CIni()
 {
@@ -28,12 +24,12 @@ void CIni::resetValues()
 	this->values.clear();
 }
 
-bool CIni::findSection(const std::string & section) const
+bool CIni::findSection(const std::string section) const
 {
 	return this->values.find(section) != this->values.end();
 }
 
-bool CReaderIni::readIniFile(const std::string& filename)
+bool CReaderIni::readIniFile(const std::string filename)
 {
 	std::ifstream ifs(filename);
 
@@ -48,7 +44,7 @@ bool CReaderIni::readIniFile(const std::string& filename)
 	return true;
 }
 
-const Section* const CReaderIni::getSection(const std::string & section) const
+const Section* const CReaderIni::getSection(const std::string section) const
 {
 	if (!this->findSection(section))
 		return nullptr;
@@ -67,9 +63,11 @@ void CReaderIni::parse(std::ifstream& s)
 	std::regex check_parameter(R"(^\s*\S+\s*=\s*\S+\s*$)");
 	std::regex check_comment(R"(#|:)");
 
-	while (std::getline(s, line)) {
+	while (std::getline(s, line)) 
+	{
 		std::string data;
-		for (char c : line) {
+		for (char c : line) 
+		{
 			if (c == '#' || c == ':') 
 				break;
 			else 
@@ -96,7 +94,7 @@ void CReaderIni::parse(std::ifstream& s)
 	}
 }
 
-bool CWriterIni::writeIniFile(const std::string & filename)
+bool CWriterIni::writeIniFile(const std::string filename)
 {
 	std::ofstream ofs(filename, std::ios::out);
 	if (!ofs.is_open()) {
@@ -115,7 +113,7 @@ bool CWriterIni::writeIniFile(const std::string & filename)
 	return true;
 }
 
-bool CWriterIni::setSection(const std::string & section)
+bool CWriterIni::setSection(const std::string section)
 {
 	if (!this->findSection(section)) {
 		this->values.insert(std::make_pair(section, Section()));
@@ -125,12 +123,12 @@ bool CWriterIni::setSection(const std::string & section)
 		return false;
 }
 
-bool CWriterIni::removeSection(const std::string & section)
+bool CWriterIni::removeSection(const std::string section)
 {
 	return this->values.erase(section) > 0;
 }
 
-bool CWriterIni::remove(const std::string & section, const std::string & key)
+bool CWriterIni::remove(const std::string section, const std::string key)
 {
 	if (this->findSection(section)) {
 		return this->values[section].erase(key) > 0;

@@ -16,7 +16,7 @@ namespace SN
 		~CIni();
 
 		void resetValues();
-		bool findSection(const std::string& section) const;
+		bool findSection(const std::string section) const;
 
 		iniFormat values;
 
@@ -30,12 +30,12 @@ namespace SN
 	public:
 		using CIni::CIni;
 
-		bool readIniFile(const std::string& filename);
+		bool readIniFile(const std::string filename);
 
 		template<class T>
-		T get(const std::string& section, const std::string& key, const T& default_value) const;
+		T get(const std::string section, const std::string key, const T& default_value) const;
 
-		const Section* const getSection(const std::string& section) const;
+		const Section* const getSection(const std::string section) const;
 	private:
 		template<class T>
 		T parseValue(const std::string& value, const T& default_value) const;
@@ -47,20 +47,20 @@ namespace SN
 	public:
 		using CIni::CIni;
 
-		bool writeIniFile(const std::string& filename);
+		bool writeIniFile(const std::string filename);
 
-		bool setSection(const std::string& section);
-		bool removeSection(const std::string& section);
-		bool remove(const std::string& section, const std::string& key);
+		bool setSection(const std::string section);
+		bool removeSection(const std::string section);
+		bool remove(const std::string section, const std::string key);
 
 		template<class T = std::string>
-		bool set(const std::string& section, const std::string& key, const T& value);
+		bool set(const std::string section, const std::string key, const T value);
 
 		bool sectionSpaceEnabled = true;
 	};
 
 	template<class T>
-	inline T CReaderIni::get(const std::string & section, const std::string & key, const T& default_value) const
+	inline T CReaderIni::get(const std::string section, const std::string key, const T& default_value) const
 	{
 		auto sec = this->getSection(section);
 
@@ -83,7 +83,7 @@ namespace SN
 	}
 
 	template<class T>
-	inline bool CWriterIni::set(const std::string & section, const std::string & key, const T & value)
+	inline bool CWriterIni::set(const std::string section, const std::string key, const T value)
 	{
 		std::string ret;
 		std::stringstream ss;

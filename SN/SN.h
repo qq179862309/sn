@@ -27,6 +27,10 @@
 
 
 #include <string>
+#include <fstream>
+#include <sstream>
+#include <iostream>
+
 #include <atlstr.h>
 #include <atltime.h>
 
@@ -39,7 +43,8 @@
 #include "module/MemoryModule.h"
 #include "hook/Hook.h"
 #include "log/Log.h"
-#include "core\Ini.h"
-#include "core\Character.h"
+#include "core/Ini.h"
+#include "core/Character.h"
+#include "core/InjecLib.h"
 
 using namespace SN;

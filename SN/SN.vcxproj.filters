@@ -66,6 +66,9 @@
     <ClInclude Include="core\Character.h">
       <Filter>core</Filter>
     </ClInclude>
+    <ClInclude Include="core\InjecLib.h">
+      <Filter>core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -93,6 +96,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Character.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="InjecLib.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
